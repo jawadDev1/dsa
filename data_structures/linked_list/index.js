@@ -27,6 +27,7 @@ class LinkedList {
     newNode.next = this.current.next;
     this.current.next = newNode;
     this.current = newNode;
+    
   }
 
   addAtHead(val) {
@@ -52,27 +53,25 @@ class LinkedList {
   }
 
   deleteAtTail() {
-    let temp = this.head
-    while(temp.next.next !== null) {
+    let temp = this.head;
+    while (temp.next.next !== null) {
       temp = temp.next;
     }
 
     temp.next = null;
-    delete this.tail;
     this.tail = temp;
   }
 
   deleteCurrent() {
-    if(this.current == this.head) return this.deleteAtHead();
-    if(this.current == this.tail) return this.deleteAtTail();
+    if (this.current == this.head) return this.deleteAtHead();
+    if (this.current == this.tail) return this.deleteAtTail();
 
     let temp = this.head;
-    while(temp.next !== this.current) {
+    while (temp.next !== this.current) {
       temp = temp.next;
     }
 
     temp.next = this.current.next;
-    delete this.current;
     this.current = temp;
   }
 
@@ -83,17 +82,40 @@ class LinkedList {
 
     this.tail = current;
 
-    while(current !== null) {
-      next  = current.next;
+    while (current !== null) {
+      next = current.next;
       current.next = prev;
 
       prev = current;
       current = next;
-      next = current?.next
+      next = current?.next;
     }
 
     this.head = prev;
+  }
 
+  removeDuplicates() {
+    let temp = this.head;
+    while (temp.next !== null) {
+      if (temp.data == temp?.next?.data) {
+        temp.next = temp?.next?.next;
+      } else {
+        temp = temp.next;
+      }
+    }
+  }
+
+  hasCycles() {
+    let slow = this.head;
+    let fast = this.head;
+
+    while (fast !== null && fast.next !== null) {
+      slow = slow.next;
+      fast = fast.next.next;
+      if (slow == fast) return true;
+    }
+
+    return false;
   }
 
   display() {
@@ -108,10 +130,17 @@ class LinkedList {
 const list = new LinkedList();
 
 list.add(1);
-list.addAtTail(2);
-list.addAtTail(3);
-list.addAtTail(4);
+list.add(1);
+list.add(1);
+list.add(1);
+// list.addAtTail(2);
+// list.addAtTail(2);
+// list.addAtTail(3);
+// list.addAtTail(4);
 
-list.reverse()
+// list.removeDuplicates();
+
+console.log("Cycles ==> ", list.hasCycles());
+// list.reverse()
 
 list.display();
