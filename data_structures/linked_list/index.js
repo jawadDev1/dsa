@@ -7,7 +7,7 @@ class Node {
   }
 }
 
-class LinkedList {
+export class LinkedList {
   head = null;
   tail = null;
   current = null;
@@ -129,10 +129,10 @@ class LinkedList {
 
 const list = new LinkedList();
 
-list.add(1);
-list.add(1);
-list.add(1);
-list.add(1);
+// list.add(1);
+// list.add(1);
+// list.add(1);
+// list.add(1);
 // list.addAtTail(2);
 // list.addAtTail(2);
 // list.addAtTail(3);
@@ -140,7 +140,7 @@ list.add(1);
 
 // list.removeDuplicates();
 
-console.log("Cycles ==> ", list.hasCycles());
+// console.log("Cycles ==> ", list.hasCycles());
 // list.reverse()
 
-list.display();
+// list.display();
